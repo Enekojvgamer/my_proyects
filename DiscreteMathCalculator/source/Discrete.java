@@ -2,7 +2,7 @@ package discreteMath;
 
 /**
  * Utilidades esenciales para cálculos matemáticos discretos
- * @author Eneko
+ * @author Eneko Jurado Varela
  * @version 1.0
  */
 public class Discrete
