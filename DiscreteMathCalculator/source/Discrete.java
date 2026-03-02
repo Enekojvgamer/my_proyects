@@ -6,17 +6,6 @@ package discreteMath;
  * @version 1.0
  */
 public class Discrete
-{	
-	public static void main(String[] args){
-		//System.out.println(factorial(1));
-		//System.out.println(comb(2,1));
-		//System.out.println(var());
-		//System.out.println(varr());
-		//System.out.println(varc(5,4));
-		//System.out.println(perc());
-		//System.out.println(perr(3,3,3));
-		//System.out.println(combr());
-	}
 	/**
 	 * Cálcula todas las formas posibles de ordenar un conjunto m de elementos
 	 * @param int x>=0
