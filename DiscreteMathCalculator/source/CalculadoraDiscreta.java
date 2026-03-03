@@ -57,15 +57,10 @@ public class CalculadoraDiscreta
 			
 			// Permutación - circular
 			else if(opcion.equals("3")) {
-				System.out.println("Introduce la cantidad de argumentos:");
-				len = sc.nextInt();
 				System.out.println("Introduce los argumentos:");
-				int numeros[] = new int[len];
-				for(int i=0; i<len; i++) {
-					numeros[i] = sc.nextInt();
-				}	
+				m = sc.nextInt();
 				System.out.println("RESULTADO:");
-				System.out.println(Discrete.perr(numeros)); 
+				System.out.println(Discrete.perc(m)); 
 			}
 			
 			
