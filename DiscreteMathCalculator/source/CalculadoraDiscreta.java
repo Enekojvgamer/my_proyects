@@ -56,7 +56,7 @@ public class CalculadoraDiscreta
 			
 			
 			// Permutación - circular
-			else if(opcion.equals("2")) {
+			else if(opcion.equals("3")) {
 				System.out.println("Introduce la cantidad de argumentos:");
 				len = sc.nextInt();
 				System.out.println("Introduce los argumentos:");
