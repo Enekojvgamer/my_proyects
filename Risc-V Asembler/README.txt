@@ -81,3 +81,90 @@ Tipo B:  beq, bne, blt, bge, bltu, bgeu
 Tipo S:  sb, sh, sw
 Tipo R:  add, sub, sll, slt, sltu, xor, srl, sra, or, and
 Sistema: ecall, ebreak, csrrw, csrrs, csrrc, csrrwi, csrrsi, csrrci
+
+
+
+
+
+
+
+RISC-V Assembler
+================
+AUTHOR: Eneko Jurado Varela
+Assembler written in Python that translates RISC-V instructions into binary machine code.
+Supports the full RV32I instruction set (including CSR instructions).
+
+
+HOW TO USE
+----------
+1. Write your instructions in the "asmbl.csv" file
+2. Run the script: python assembler.py
+3. The result will appear in "riscv_bin.csv"
+
+
+SYNTAX
+------
+WARNING! The syntax has some differences from the standard RISC-V assembler:
+
+  1. NO spaces between commas or arguments.
+     Correct:   addi s2,zero,-7
+     Incorrect: addi s2, zero, -7
+
+  2. Labels are NOT supported.
+     Incorrect: loop:
+                    addi t0,t0,1
+                    bne t0,t1,loop
+     Jumps and branches must use the numeric immediate directly.
+
+  3. There is exactly one space between the instruction name and its arguments.
+     Correct:   add t0,t1,t2
+     Incorrect: add  t0,t1,t2  (double space)
+
+
+GUIDE LINES
+-----------
+You can write free-text lines to organize your code, as long as they are
+6 characters or fewer. For example:
+
+     while:
+         addi t0,t0,1
+         bne t0,t1,8
+     end:
+
+These lines act as block comments and are ignored by the assembler.
+
+
+INLINE COMMENTS
+---------------
+You can add comments at the end of any instruction, separated by a space:
+
+     addi t0,zero,10 initialize counter
+     add t1,t1,t0 accumulate result
+
+
+asmbl.csv GUIDE
+---------------
+The file 'asmbl.csv' must be created manually in the same directory as
+the .py file.
+The file 'riscv_bin.csv' will be created automatically.
+
+
+EXAMPLE asmbl.csv FILE
+-----------------------
+loop:
+addi t0,t0,1 increment t0
+addi t1,t1,-1 decrement t1
+end:
+bne t1,zero,-8 go back to loop if t1 != 0
+ecall
+
+
+SUPPORTED INSTRUCTIONS
+-----------------------
+Type U:  lui, auipc
+Type J:  jal
+Type I:  jalr, lb, lh, lw, lbu, lhu, addi, slti, sltiu, xori, ori, andi, slli, srli, srai
+Type B:  beq, bne, blt, bge, bltu, bgeu
+Type S:  sb, sh, sw
+Type R:  add, sub, sll, slt, sltu, xor, srl, sra, or, and
+System:  ecall, ebreak, csrrw, csrrs, csrrc, csrrwi, csrrsi, csrrci
