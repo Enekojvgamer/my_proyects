@@ -1,5 +1,6 @@
 RISC-V Assembler
 ================
+AUTOR: Eneko Jurado Varela
 
 Ensamblador escrito en Python que traduce instrucciones RISC-V a código máquina binario.
 Soporta el conjunto de instrucciones RV32I completo (incluyendo instrucciones CSR).
@@ -50,6 +51,15 @@ Puedes añadir comentarios al final de cualquier instrucción separados por un e
 
      addi t0,zero,10 inicializar contador
      add t1,t1,t0 acumular resultado
+
+
+
+asmbl.csv GUIA
+--------------
+El fichero 'asmbl.csv' debe de ser creado manualmente en el directorio donde se 
+encuentre el archivo .py
+El archivo 'riscv_bin.csv' se creará automáticamente.
+
 
 
 EJEMPLO DE FICHERO asmbl.csv
