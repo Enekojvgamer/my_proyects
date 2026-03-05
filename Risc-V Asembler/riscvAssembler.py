@@ -908,5 +908,3 @@ inicializarFichero(path_compiler)
 
 for i in range(len(instrucciones)):
     escribirLinea(assembler(instrucciones[i]),path_compiler)
-
-# One touch drawing
