@@ -33,9 +33,10 @@ def inicializarFichero(path) -> None:
 
 def escribirLinea(bin:str, path:str) -> None:
     if(os.path.exists(path)):
-        fichero = open(path,"a",encoding="UTF-8")
-        fichero.write(f"{bin}\n")
-        fichero.close()
+        if(len(bin) == 32):
+            fichero = open(path,"a",encoding="UTF-8")
+            fichero.write(f"{bin}\n")
+            fichero.close()
     else:
         print("El fichero 'riscv_bin.csv' no existe o no se ha encontrado")
 
