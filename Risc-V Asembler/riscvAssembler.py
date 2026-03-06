@@ -341,7 +341,7 @@ def assembler(lista:list[str]) -> str:
         for i in range(n,len(lista[2])-1): # conseguir rs1 aprovechando n
             rs1 += lista[2][i]
         imm = complemento_A2(numeroDecimal)
-        for i in range(4):
+        for i in range(5):
             bin = imm[19-i] + bin
         bin = "000" + bin
         bin = registros[rs1] + bin
@@ -365,7 +365,7 @@ def assembler(lista:list[str]) -> str:
         for i in range(n,len(lista[2])-1): # conseguir rs1 aprovechando n
             rs1 += lista[2][i]
         imm = complemento_A2(numeroDecimal)
-        for i in range(4):
+        for i in range(5):
             bin = imm[19-i] + bin
         bin = "001" + bin
         bin = registros[rs1] + bin
@@ -389,7 +389,7 @@ def assembler(lista:list[str]) -> str:
         for i in range(n,len(lista[2])-1): # conseguir rs1 aprovechando n
             rs1 += lista[2][i]
         imm = complemento_A2(numeroDecimal)
-        for i in range(4):
+        for i in range(5):
             bin = imm[19-i] + bin
         bin = "010" + bin
         bin = registros[rs1] + bin
