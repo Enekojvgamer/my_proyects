@@ -770,7 +770,7 @@ def assembler(lista:list[str]) -> str:
     return bin
 
 def complemento_A2(decimal:str) -> str:
-    potencia:int = 19
+    potencia:int = 31
     bin:str = ""
     if(decimal[0:2] == "0x"):
         for hex in decimal[2:(len(decimal))]:
@@ -781,7 +781,7 @@ def complemento_A2(decimal:str) -> str:
     if(decimal == "0"):
         return "00000000000000000000000000000000"
     if(decimal[0] != "-"): # Decimal positivo
-        for i in range(20):
+        for i in range(32):
             if(2**(potencia-i) <= numero):
                 numero -= 2**(potencia-i)
                 bin += "1"
@@ -789,7 +789,7 @@ def complemento_A2(decimal:str) -> str:
                 bin += "0"
     else: # Decimal negativo
         numero *= -1
-        for i in range(20):
+        for i in range(32):
             if(2**(potencia-i) >= numero):
                 bin += "1"
             else:
