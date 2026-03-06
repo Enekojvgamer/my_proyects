@@ -1,7 +1,6 @@
 RISC-V Assembler
 ================
 AUTOR: Eneko Jurado Varela
-
 Ensamblador escrito en Python que traduce instrucciones RISC-V a código máquina binario.
 Soporta el conjunto de instrucciones RV32I completo (incluyendo instrucciones CSR).
 
@@ -27,9 +26,32 @@ SINTAXIS
                      bne t0,t1,loop
      Los saltos y branches deben usar el inmediato numérico directamente.
 
-  3. Hay un espacio entre el nombre de la instrucción y sus argumentos.
+  3. Hay exactamente un espacio entre el nombre de la instrucción y sus argumentos.
      Correcto:   add t0,t1,t2
      Incorrecto: add  t0,t1,t2  (doble espacio)
+
+
+NOMENCLATURA DE REGISTROS
+--------------------------
+Puedes usar cualquiera de las dos nomenclaturas para referirte a los registros,
+e incluso mezclarlas dentro del mismo fichero:
+
+  Nomenclatura ABI (nombre):   zero, ra, sp, t0, s1, a0, ...
+  Nomenclatura numérica:       x0,   x1, x2, x5, x9, x10, ...
+
+  Ejemplos equivalentes:
+     addi t0,zero,10
+     addi x5,x0,10
+
+
+NOMENCLATURA DE INMEDIATOS
+---------------------------
+Los inmediatos se pueden escribir en decimal o en hexadecimal:
+
+  Decimal:      addi t0,zero,-7
+  Hexadecimal:  addi t0,zero,0xFF
+
+  El signo negativo solo aplica a la notación decimal.
 
 
 LINEAS DE GUIA
@@ -53,20 +75,18 @@ Puedes añadir comentarios al final de cualquier instrucción separados por un e
      add t1,t1,t0 acumular resultado
 
 
-
 asmbl.csv GUIA
 --------------
-El fichero 'asmbl.csv' debe de ser creado manualmente en el directorio donde se 
+El fichero 'asmbl.csv' debe de ser creado manualmente en el directorio donde se
 encuentre el archivo .py
 El archivo 'riscv_bin.csv' se creará automáticamente.
-
 
 
 EJEMPLO DE FICHERO asmbl.csv
 -----------------------------
 loop:
-addi t0,t0,1 incrementar t0
-addi t1,t1,-1 decrementar t1
+addi t0,x0,1 inicializar t0 con nomenclatura mixta
+addi x6,x6,-1 decrementar con nomenclatura numérica
 end:
 bne t1,zero,-8 volver a loop si t1 != 0
 ecall
@@ -81,6 +101,8 @@ Tipo B:  beq, bne, blt, bge, bltu, bgeu
 Tipo S:  sb, sh, sw
 Tipo R:  add, sub, sll, slt, sltu, xor, srl, sra, or, and
 Sistema: ecall, ebreak, csrrw, csrrs, csrrc, csrrwi, csrrsi, csrrci
+
+
 
 
 
@@ -121,6 +143,29 @@ WARNING! The syntax has some differences from the standard RISC-V assembler:
      Incorrect: add  t0,t1,t2  (double space)
 
 
+REGISTER NAMING
+---------------
+You can use either naming convention for registers, and even mix them
+within the same file:
+
+  ABI names:        zero, ra, sp, t0, s1, a0, ...
+  Numeric names:    x0,   x1, x2, x5, x9, x10, ...
+
+  Equivalent examples:
+     addi t0,zero,10
+     addi x5,x0,10
+
+
+IMMEDIATE VALUES
+----------------
+Immediates can be written in decimal or hexadecimal:
+
+  Decimal:      addi t0,zero,-7
+  Hexadecimal:  addi t0,zero,0xFF
+
+  The negative sign only applies to decimal notation.
+
+
 GUIDE LINES
 -----------
 You can write free-text lines to organize your code, as long as they are
@@ -152,8 +197,8 @@ The file 'riscv_bin.csv' will be created automatically.
 EXAMPLE asmbl.csv FILE
 -----------------------
 loop:
-addi t0,t0,1 increment t0
-addi t1,t1,-1 decrement t1
+addi t0,x0,1 initialize t0 using mixed naming
+addi x6,x6,-1 decrement using numeric naming
 end:
 bne t1,zero,-8 go back to loop if t1 != 0
 ecall
