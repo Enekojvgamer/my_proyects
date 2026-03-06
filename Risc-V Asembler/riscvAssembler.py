@@ -33,7 +33,7 @@ def inicializarFichero(path) -> None:
 
 def escribirLinea(bin:str, path:str) -> None:
     if(os.path.exists(path)):
-        if(len(bin) == 32):
+        if(len(bin) > 0):
             fichero = open(path,"a",encoding="UTF-8")
             fichero.write(f"{bin}\n")
             fichero.close()
@@ -78,11 +78,11 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[1]] + bin
         imm = complemento_A2(lista[2])
         for i in range(8):
-            bin = imm[8-i] + bin
-        bin = imm[9] + bin
-        for i in range(10):
             bin = imm[19-i] + bin
-        bin = imm[0] + bin
+        bin = imm[20] + bin
+        for i in range(10):
+            bin = imm[30-i] + bin
+        bin = imm[11] + bin
 
     
 
@@ -104,7 +104,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[rs1] + bin
         imm = complemento_A2(numeroDecimal)
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
 
 
 
@@ -114,15 +114,15 @@ def assembler(lista:list[str]) -> str:
     elif(lista[0] == "beq"):
         bin += opCodes['beq']
         imm = complemento_A2(lista[3])
-        bin = imm[9] + bin
+        bin = imm[20] + bin
         for i in range(4):
-            bin = imm[19-i] + bin
+            bin = imm[30-i] + bin
         bin = "000" + bin # f3
         bin = registros[lista[1]] + bin # rs1
         bin = registros[lista[2]] + bin # rs2
         for i in range(6):
-            bin = imm[15-i] + bin
-        bin = imm[8] + bin
+            bin = imm[26-i] + bin
+        bin = imm[19] + bin
 
 
 
@@ -132,15 +132,15 @@ def assembler(lista:list[str]) -> str:
     elif(lista[0] == "bne"):
         bin += opCodes['bne']
         imm = complemento_A2(lista[3])
-        bin = imm[9] + bin
+        bin = imm[20] + bin
         for i in range(4):
-            bin = imm[19-i] + bin
+            bin = imm[30-i] + bin
         bin = "001" + bin # f3
         bin = registros[lista[1]] + bin # rs1
         bin = registros[lista[2]] + bin # rs2
         for i in range(6):
-            bin = imm[15-i] + bin
-        bin = imm[8] + bin
+            bin = imm[26-i] + bin
+        bin = imm[19] + bin
 
 
 
@@ -150,15 +150,15 @@ def assembler(lista:list[str]) -> str:
     elif(lista[0] == "blt"):
         bin += opCodes['blt']
         imm = complemento_A2(lista[3])
-        bin = imm[9] + bin
+        bin = imm[20] + bin
         for i in range(4):
-            bin = imm[19-i] + bin
+            bin = imm[30-i] + bin
         bin = "100" + bin # f3
         bin = registros[lista[1]] + bin # rs1
         bin = registros[lista[2]] + bin # rs2
         for i in range(6):
-            bin = imm[15-i] + bin
-        bin = imm[8] + bin
+            bin = imm[26-i] + bin
+        bin = imm[19] + bin
 
 
 
@@ -168,15 +168,15 @@ def assembler(lista:list[str]) -> str:
     elif(lista[0] == "bge"):
         bin += opCodes['bge']
         imm = complemento_A2(lista[3])
-        bin = imm[9] + bin
+        bin = imm[20] + bin
         for i in range(4):
-            bin = imm[19-i] + bin
+            bin = imm[30-i] + bin
         bin = "101" + bin # f3
         bin = registros[lista[1]] + bin # rs1
         bin = registros[lista[2]] + bin # rs2
         for i in range(6):
-            bin = imm[15-i] + bin
-        bin = imm[8] + bin
+            bin = imm[26-i] + bin
+        bin = imm[19] + bin
 
 
 
@@ -187,15 +187,15 @@ def assembler(lista:list[str]) -> str:
     elif(lista[0] == "bltu"):
         bin += opCodes['bltu']
         imm = complemento_A2(lista[3])
-        bin = imm[9] + bin
+        bin = imm[20] + bin
         for i in range(4):
-            bin = imm[19-i] + bin
+            bin = imm[30-i] + bin
         bin = "110" + bin # f3
         bin = registros[lista[1]] + bin # rs1
         bin = registros[lista[2]] + bin # rs2
         for i in range(6):
-            bin = imm[15-i] + bin
-        bin = imm[8] + bin
+            bin = imm[26-i] + bin
+        bin = imm[19] + bin
 
 
 
@@ -205,15 +205,15 @@ def assembler(lista:list[str]) -> str:
     elif(lista[0] == "bgeu"):
         bin += opCodes['bgeu']
         imm = complemento_A2(lista[3])
-        bin = imm[9] + bin
+        bin = imm[20] + bin
         for i in range(4):
-            bin = imm[19-i] + bin
+            bin = imm[30-i] + bin
         bin = "111" + bin # f3
         bin = registros[lista[1]] + bin # rs1
         bin = registros[lista[2]] + bin # rs2
         for i in range(6):
-            bin = imm[15-i] + bin
-        bin = imm[8] + bin
+            bin = imm[26-i] + bin
+        bin = imm[19] + bin
 
 
 
@@ -235,7 +235,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[rs1] + bin
         imm = complemento_A2(numeroDecimal)
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
 
 
 
@@ -257,7 +257,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[rs1] + bin
         imm = complemento_A2(numeroDecimal)
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
 
 
 
@@ -279,7 +279,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[rs1] + bin
         imm = complemento_A2(numeroDecimal)
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
     
 
 
@@ -301,7 +301,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[rs1] + bin
         imm = complemento_A2(numeroDecimal)
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
 
 
 
@@ -323,7 +323,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[rs1] + bin
         imm = complemento_A2(numeroDecimal)
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
 
 
 
@@ -342,12 +342,12 @@ def assembler(lista:list[str]) -> str:
             rs1 += lista[2][i]
         imm = complemento_A2(numeroDecimal)
         for i in range(5):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
         bin = "000" + bin
         bin = registros[rs1] + bin
         bin = registros[lista[1]] + bin # rs2
         for i in range(7):
-            bin = imm[15-i] + bin
+            bin = imm[26-i] + bin
     
 
 
@@ -366,12 +366,12 @@ def assembler(lista:list[str]) -> str:
             rs1 += lista[2][i]
         imm = complemento_A2(numeroDecimal)
         for i in range(5):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
         bin = "001" + bin
         bin = registros[rs1] + bin
         bin = registros[lista[1]] + bin # rs2
         for i in range(7):
-            bin = imm[15-i] + bin
+            bin = imm[26-i] + bin
     
 
 
@@ -390,12 +390,12 @@ def assembler(lista:list[str]) -> str:
             rs1 += lista[2][i]
         imm = complemento_A2(numeroDecimal)
         for i in range(5):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
         bin = "010" + bin
         bin = registros[rs1] + bin
         bin = registros[lista[1]] + bin # rs2
         for i in range(7):
-            bin = imm[15-i] + bin
+            bin = imm[26-i] + bin
     
 
 
@@ -409,7 +409,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[2]] + bin
         imm = complemento_A2(lista[3])
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
     
 
 
@@ -423,7 +423,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[2]] + bin
         imm = complemento_A2(lista[3])
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
 
 
 
@@ -437,7 +437,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[2]] + bin
         imm = complemento_A2(lista[3])
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
 
     
 
@@ -451,7 +451,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[2]] + bin
         imm = complemento_A2(lista[3])
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
     
 
 
@@ -465,7 +465,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[2]] + bin
         imm = complemento_A2(lista[3])
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
 
 
 
@@ -479,7 +479,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[2]] + bin
         imm = complemento_A2(lista[3])
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
     
 
 
@@ -493,7 +493,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[2]] + bin
         shamt = complemento_A2(lista[3])
         for i in range(5):
-            bin = shamt[19-i] + bin
+            bin = shamt[31-i] + bin
         bin = "0000000" + bin
     
 
@@ -508,7 +508,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[2]] + bin
         shamt = complemento_A2(lista[3])
         for i in range(5):
-            bin = shamt[19-i] + bin
+            bin = shamt[31-i] + bin
         bin = "0000000" + bin
     
 
@@ -523,7 +523,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[2]] + bin
         shamt = complemento_A2(lista[3])
         for i in range(5):
-            bin = shamt[19-i] + bin
+            bin = shamt[31-i] + bin
         bin = "0100000" + bin
 
 
@@ -684,7 +684,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[3]] + bin
         imm = complemento_A2(lista[2])
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
     
 
 
@@ -698,7 +698,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[3]] + bin
         imm = complemento_A2(lista[2])
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
     
 
 
@@ -712,7 +712,7 @@ def assembler(lista:list[str]) -> str:
         bin = registros[lista[3]] + bin
         imm = complemento_A2(lista[2])
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
     
 
 
@@ -725,11 +725,11 @@ def assembler(lista:list[str]) -> str:
         bin = "101" + bin
         bin = registros[lista[3]] + bin
         imm = complemento_A2(lista[3]) # zimm
-        for i in range(4):
-            bin = imm[19-i] + bin
+        for i in range(5):
+            bin = imm[31-i] + bin
         imm = complemento_A2(lista[2]) # csr
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
     
 
 
@@ -742,11 +742,11 @@ def assembler(lista:list[str]) -> str:
         bin = "110" + bin
         bin = registros[lista[3]] + bin
         imm = complemento_A2(lista[3]) # zimm
-        for i in range(4):
-            bin = imm[19-i] + bin
+        for i in range(5):
+            bin = imm[31-i] + bin
         imm = complemento_A2(lista[2]) # csr
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
     
 
 
@@ -759,11 +759,11 @@ def assembler(lista:list[str]) -> str:
         bin = "111" + bin
         bin = registros[lista[3]] + bin
         imm = complemento_A2(lista[3]) # zimm
-        for i in range(4):
-            bin = imm[19-i] + bin
+        for i in range(5):
+            bin = imm[31-i] + bin
         imm = complemento_A2(lista[2]) # csr
         for i in range(12):
-            bin = imm[19-i] + bin
+            bin = imm[31-i] + bin
 
 
 
@@ -772,7 +772,14 @@ def assembler(lista:list[str]) -> str:
 def complemento_A2(decimal:str) -> str:
     potencia:int = 19
     bin:str = ""
-    numero:int = int(decimal)
+    if(decimal[0:2] == "0x"):
+        for hex in decimal[2:(len(decimal))]:
+            bin += hex_bin(hex)
+        return bin
+    else:
+        numero:int = int(decimal)
+    if(decimal == "0"):
+        return "00000000000000000000000000000000"
     if(decimal[0] != "-"): # Decimal positivo
         for i in range(20):
             if(2**(potencia-i) <= numero):
@@ -825,7 +832,39 @@ registros:dict[str,str] = {
     't3': "11100",
     't4': "11101",
     't5': "11110",
-    't6': "11111"
+    't6': "11111",
+    'x0': "00000",
+    'x1': "00001",
+    'x2': "00010",
+    'x3': "00011",
+    'x4': "00100",
+    'x5': "00101",
+    'x6': "00110",
+    'x7': "00111",
+    'x8': "01000",
+    'x9': "01001",
+    'x10': "01010",
+    'x11': "01011",
+    'x12': "01100",
+    'x13': "01101",
+    'x14': "01110",
+    'x15': "01111",
+    'x16': "10000",
+    'x17': "10001",
+    'x18': "10010",
+    'x19': "10011",
+    'x20': "10100",
+    'x21': "10101",
+    'x22': "10110",
+    'x23': "10111",
+    'x24': "11000",
+    'x25': "11001",
+    'x26': "11010",
+    'x27': "11011",
+    'x28': "11100",
+    'x29': "11101",
+    'x30': "11110",
+    'x31': "11111"
 }
 
 opCodes:dict[str,str] = {
