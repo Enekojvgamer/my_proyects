@@ -33,10 +33,12 @@ def inicializarFichero(path) -> None:
 
 def escribirLinea(bin:str, path:str) -> None:
     if(os.path.exists(path)):
-        if(len(bin) > 0):
-            fichero = open(path,"a",encoding="UTF-8")
+        fichero = open(path,"a",encoding="UTF-8")    
+        if(len(bin) == 32):
             fichero.write(f"{bin}\n")
-            fichero.close()
+        else:
+            fichero.write(f"{bin[0:32]}\n{bin[32:len(bin)]}\n")
+        fichero.close()
     else:
         print("El fichero 'riscv_bin.csv' no existe o no se ha encontrado")
 
@@ -766,6 +768,41 @@ def assembler(lista:list[str]) -> str:
             bin = imm[31-i] + bin
 
 
+    
+    # SPECIAL INSTRUCTIONS
+
+    ######
+    # li
+    ######
+    elif(lista[0] == "li"):
+        bin2:str = ""
+        bin += opCodes['lui']
+        bin = registros[lista[1]] + bin
+        imm = complemento_A2(lista[2])
+        for i in range(20):
+            bin = imm[19-i] + bin # Primer numero, donde empieza. range(x), cuantos quiero
+        bin += opCodes['addi']
+        bin = registros[lista[1]] + bin
+        bin = "000" + bin
+        bin = registros[lista[1]] + bin
+        for i in range(12):
+            bin = imm[31-i] + bin
+        return bin + bin2
+    
+
+
+    ######
+    # not
+    ######
+    elif(lista[0] == "not"):
+        bin += opCodes['xori']
+        bin = registros[lista[1]] + bin
+        bin = "100" + bin
+        bin = registros[lista[2]] + bin
+        for i in range(12):
+            bin = ("1"*32)[31-i] + bin
+
+
 
     return bin
 
@@ -775,6 +812,8 @@ def complemento_A2(decimal:str) -> str:
     if(decimal[0:2] == "0x"):
         for hex in decimal[2:(len(decimal))]:
             bin += hex_bin(hex)
+        while(len(bin)<32):
+            bin = "0" + bin
         return bin
     else:
         numero:int = int(decimal)
