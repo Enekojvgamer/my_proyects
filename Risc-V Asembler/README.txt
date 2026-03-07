@@ -101,6 +101,7 @@ Tipo B:  beq, bne, blt, bge, bltu, bgeu
 Tipo S:  sb, sh, sw
 Tipo R:  add, sub, sll, slt, sltu, xor, srl, sra, or, and
 Sistema: ecall, ebreak, csrrw, csrrs, csrrc, csrrwi, csrrsi, csrrci
+Especiales: li, not
 
 
 
@@ -213,3 +214,4 @@ Type B:  beq, bne, blt, bge, bltu, bgeu
 Type S:  sb, sh, sw
 Type R:  add, sub, sll, slt, sltu, xor, srl, sra, or, and
 System:  ecall, ebreak, csrrw, csrrs, csrrc, csrrwi, csrrsi, csrrci
+Specials: li, not
