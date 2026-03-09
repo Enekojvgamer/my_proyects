@@ -23,9 +23,8 @@ public class CalculadoraDiscreta
 			System.out.println("5. Variación con repetición");
 			System.out.println("6. Variación circular");
 			System.out.println("7. Combinación");
-			System.out.println("8. Combinación circular");
-			System.out.println("9. Combinaciones con repetición");
-			System.out.println("0. Salir");
+			System.out.println("8. Combinaciones con repetición");
+			System.out.println("9. Salir");
 			opcion = sc.nextLine();
 			
 			
@@ -104,18 +103,8 @@ public class CalculadoraDiscreta
 			}
 			
 			
-			// Combinación - circular
-			else if(opcion.equals("8")) {
-				System.out.println("Introduce los argumentos:");
-				m = sc.nextInt();
-				n = sc.nextInt();
-				System.out.println("RESULTADO:");
-				System.out.println(Discrete.combc(m,n));
-			}
-			
-			
 			// Combinacion - repetición
-			else if(opcion.equals("9")) {
+			else if(opcion.equals("8")) {
 				System.out.println("Introduce los argumentos:");
 				m = sc.nextInt();
 				n = sc.nextInt();
@@ -125,7 +114,7 @@ public class CalculadoraDiscreta
 			
 			
 			// Exit
-			else if(opcion.equals("0")) {calculando = false;}
+			else if(opcion.equals("9")) {calculando = false;}
 			else{System.out.println("La opción elegida no está disponible.");}
 			if(calculando) {sc.nextLine();}
 		}
