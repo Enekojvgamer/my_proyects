@@ -2,10 +2,21 @@ package discreteMath;
 
 /**
  * Utilidades esenciales para cálculos matemáticos discretos
- * @author Eneko Jurado Varela
+ * @author Eneko
  * @version 1.0
  */
 public class Discrete
+{	
+	public static void main(String[] args){
+		//System.out.println(factorial(1));
+		//System.out.println(comb(2,1));
+		//System.out.println(var());
+		//System.out.println(varr());
+		//System.out.println(varc(5,4));
+		//System.out.println(perc());
+		//System.out.println(perr(3,3,3));
+		//System.out.println(combr());
+	}
 	/**
 	 * Cálcula todas las formas posibles de ordenar un conjunto m de elementos
 	 * @param int x>=0
@@ -43,25 +54,6 @@ public class Discrete
 		return (long) resultado;
 	}
 	
-	
-	/**
-	 * Cálcula los diferentes grupos de n elementos que se pueden 
-	 * obtener de un montón m en un contexto circular
-	 * @param m>=1
-	 * @param n>=1
-	 * @return long x
-	 */
-	public static long combc(int m, int n)
-	{
-		if(m<1 | n<1) {System.err.println("m y n deben de ser mayores que 0."); return 1;}
-		int arriba = m+n-1;
-		int maximo = (n>m-1) ? n : m-1;
-		for(int i=m+n-2; i>maximo; i--) {
-			arriba *= i;
-		}
-		if(maximo == n) {return arriba/factorial(m-1);}
-		else {return arriba/factorial(n);}
-	}
 	
 	
 	/**
