@@ -36,7 +36,7 @@ def escribirLinea(bin:str, path:str) -> None:
         fichero = open(path,"a",encoding="UTF-8")    
         if(len(bin) == 32):
             fichero.write(f"{bin}\n")
-        else:
+        elif(len(bin)>32):
             fichero.write(f"{bin[0:32]}\n{bin[32:len(bin)]}\n")
         fichero.close()
     else:
